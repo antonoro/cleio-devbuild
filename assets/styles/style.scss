@@ -1,0 +1,319 @@
+@import 'constants';
+@import 'fonts';
+
+@mixin vendor-prefix($name, $value) {
+    @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+      #{$vendor}#{$name}: #{$value};
+    }
+  }
+
+// ***** General Style *****
+* {
+    box-sizing: border-box;
+}
+  
+html {
+position: relative;
+min-height: 100%;
+}
+
+body {
+min-height: 100%;
+// sass-lint:disable no-important
+overflow-x: hidden !important;
+background-color: beige;
+}
+
+body,
+input,
+button {
+font-family: $serif-font-family;
+}
+
+#root{
+    display: flex;
+    justify-content: center;
+}
+
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+    padding: 10px;
+
+    .modal{
+        z-index: 2;
+        background: white;
+        position: relative;
+        margin: 1.75rem auto;
+        border-radius: 10px;
+        max-width: 500px;
+        padding: 2rem;
+    }
+}
+
+.modal-body{
+    .modal-unit{
+        &.inline{
+            p{
+                display: inline;
+            }
+        }
+       
+    }
+}
+
+.vitals-table{
+   position: relative;
+   width: 100%;
+   display: block;
+   max-height: 300px;
+   overflow-y: scroll;
+   .vitalheaderrow{
+    text-align: left;
+    position: sticky;
+    top: 0;
+    background-color: white;
+   }
+    .vitalrow{
+        
+    }
+
+}
+
+.btnArray{
+    display: flex;
+    flex-direction: row;
+}
+
+.btnHolder{
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+
+    &.cancel{
+        background-color: lightcoral;
+    }
+
+    p{
+        text-align: center;
+        margin: 0;
+        pointer-events: none;
+    }
+}
+
+.disabled{
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+form{
+    max-width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .form-group{
+        display: flex;
+        flex-direction: row;
+        margin: 10px 0;
+        div{
+
+            &.label{
+                width: 30%;
+                text-align: left;
+            }
+
+            &.input {
+                width: 70%;
+                display: flex;
+                justify-content: left;
+                
+                input{
+                    &.error{
+                        border: 1px solid red;
+                    }
+                    &.valid{
+                        border: 1px solid lightgreen;
+                    }
+                }
+
+                .radioHolder{
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    .radioOption{
+                        width: 33%;
+                        background-color: lightblue;
+                        border-radius: 5px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0 10px;
+                        cursor: pointer;
+                        p{
+                            margin: 5px 0;
+                            pointer-events: none;
+                        }
+
+                        &.selected{
+                            background-color: yellow;
+                        }
+                    }
+                }
+            }
+            
+        }
+
+    }
+}
+
+
+.mainframe{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    min-height: 100%;
+    padding: 7px;
+    .header{
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 10px;
+        .labelHolder{
+            width: 70%;
+            display: flex;
+            align-items: center;
+            h2{
+                text-align: left;
+            }
+        }
+        .buttonHolder{
+            width: 30%;
+            display: flex;
+            justify-content: right;
+        }
+    }
+
+    .patientList{
+        flex: 100%;
+        background-color: white;
+        min-width: 100%;
+        padding: 0 10px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .patientEntry{
+            height: 70px;
+            width: 100%;
+            margin: 10px 10px 0;
+            background-color: lightgray;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            .division{
+                flex: 10%;
+                &.names{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    h4{
+                        margin: 0;
+                    }
+                    p{
+                        margin: 0;
+                    }
+                }
+
+                &.contact{
+                    .contactLink{
+                        text-decoration: underline;
+                    }
+                }
+
+                &.vitals{
+                    flex: 30% !important;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    .vitalUnit{
+                        flex:100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+
+                        .type{
+                            text-align: center;
+                            margin: 0;
+                            
+                        }
+                        .value{
+                            text-align: center;
+                            margin: 0;
+                        }
+                    }
+                }
+
+                &.eye{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img{
+                        height: 30px;
+                        width: 30px;
+                        cursor: pointer;
+                    }
+                }
+
+                &.delete{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img{
+                        height: 30px;
+                        width: 30px;
+                        cursor: pointer;
+                    }
+                }
+    
+                
+            }
+            
+        }
+        
+    }
+}
